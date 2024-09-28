@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\bibliotecaAPI.csproj": {}
+    "C:\\Users\\julio.luna\\Documents\\own\\api-FIDO\\bibliotecaAPI\\bibliotecaAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\bibliotecaAPI.csproj": {
+    "C:\\Users\\julio.luna\\Documents\\own\\api-FIDO\\bibliotecaAPI\\bibliotecaAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\bibliotecaAPI.csproj",
+        "projectUniqueName": "C:\\Users\\julio.luna\\Documents\\own\\api-FIDO\\bibliotecaAPI\\bibliotecaAPI.csproj",
         "projectName": "bibliotecaAPI",
-        "projectPath": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\bibliotecaAPI.csproj",
+        "projectPath": "C:\\Users\\julio.luna\\Documents\\own\\api-FIDO\\bibliotecaAPI\\bibliotecaAPI.csproj",
         "packagesPath": "C:\\Users\\julio.luna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\obj\\",
+        "outputPath": "C:\\Users\\julio.luna\\Documents\\own\\api-FIDO\\bibliotecaAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

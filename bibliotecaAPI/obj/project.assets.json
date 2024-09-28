@@ -12593,11 +12593,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\bibliotecaAPI.csproj",
+      "projectUniqueName": "C:\\Users\\julio.luna\\Documents\\own\\api-FIDO\\bibliotecaAPI\\bibliotecaAPI.csproj",
       "projectName": "bibliotecaAPI",
-      "projectPath": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\bibliotecaAPI.csproj",
+      "projectPath": "C:\\Users\\julio.luna\\Documents\\own\\api-FIDO\\bibliotecaAPI\\bibliotecaAPI.csproj",
       "packagesPath": "C:\\Users\\julio.luna\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\obj\\",
+      "outputPath": "C:\\Users\\julio.luna\\Documents\\own\\api-FIDO\\bibliotecaAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -12710,19 +12710,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    },
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://pkgs.dev.azure.com/grupodistelsa/_packaging/grupodistelsa/nuget/v3/index.json."
-    }
-  ]
+  }
 }

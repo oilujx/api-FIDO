@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/kMiiGQKyo8=",
+  "dgSpecHash": "k81kAagoabk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\bibliotecaAPI.csproj",
+  "projectFilePath": "C:\\Users\\julio.luna\\Documents\\own\\api-FIDO\\bibliotecaAPI\\bibliotecaAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julio.luna\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\julio.luna\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
@@ -251,18 +251,5 @@
     "C:\\Users\\julio.luna\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\julio.luna\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    },
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://pkgs.dev.azure.com/grupodistelsa/_packaging/grupodistelsa/nuget/v3/index.json."
-    }
-  ]
+  "logs": []
 }
