@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DBEE1134-A245-4C79-BA87-18F2EC561C6A}|bibliotecaAPI\\bibliotecaAPI.csproj|c:\\users\\julio.luna\\documents\\own\\biblioteca\\api\\bibliotecaapi\\bibliotecaapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DBEE1134-A245-4C79-BA87-18F2EC561C6A}|bibliotecaAPI\\bibliotecaAPI.csproj|solutionrelative:bibliotecaapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBEE1134-A245-4C79-BA87-18F2EC561C6A}|bibliotecaAPI\\bibliotecaAPI.csproj|c:\\users\\julio.luna\\documents\\own\\biblioteca\\api\\bibliotecaapi\\bibliotecaapi\\controllers\\bibliotecacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBEE1134-A245-4C79-BA87-18F2EC561C6A}|bibliotecaAPI\\bibliotecaAPI.csproj|solutionrelative:bibliotecaapi\\controllers\\bibliotecacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BibliotecaController.cs",
+              "DocumentMoniker": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\Controllers\\BibliotecaController.cs",
+              "RelativeDocumentMoniker": "bibliotecaAPI\\Controllers\\BibliotecaController.cs",
+              "ToolTip": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\Controllers\\BibliotecaController.cs",
+              "RelativeToolTip": "bibliotecaAPI\\Controllers\\BibliotecaController.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAQwB8AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T15:06:06.492Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "bibliotecaAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\julio.luna\\Documents\\own\\biblioteca\\API\\bibliotecaAPI\\bibliotecaAPI\\appsettings.json",
+              "RelativeToolTip": "bibliotecaAPI\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-28T03:19:01.661Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
