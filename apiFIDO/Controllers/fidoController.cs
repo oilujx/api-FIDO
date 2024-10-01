@@ -30,5 +30,17 @@ namespace apiFIDO.Controllers
 
             return Ok(resp);
         }
+
+        [HttpPost]
+        [Route("ConsultarPremio")]
+        public async Task<ActionResult<respuestaRequest>> ConsultarPremio(datosRequest datos)
+        {
+            resp = new respuestaRequest();
+            ops = new OperacionesBD(this.DBContext);
+
+            resp = await ops.obtenerPremiosXCodigo(datos);
+
+            return Ok(resp);
+        }
     }
 }

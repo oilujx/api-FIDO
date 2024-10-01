@@ -18,10 +18,6 @@
 
         #endregion
 
-        #region datosPremio
-        public string? Titulo { get; set; }
-        public string? Descripcion { get; set; }
-        public string? Src { get; set; }
-        #endregion
+       
     }
 }

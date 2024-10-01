@@ -107,15 +107,17 @@ namespace apiFIDO.DLFido
                             {
                                 p.Titulo,
                                 p.Descripcion,
-                                p.Src
+                                p.Src,
+                                cp.IdCodigoPremio
                             };
 
                 var List = await query.Select(
-                s => new datosRequest
+                s => new PremioDTO
                 {
                     Titulo = s.Titulo,
                     Descripcion = s.Descripcion,
-                    Src = s.Src
+                    Src = s.Src,
+                    IdCodigoPremio = s.IdCodigoPremio
                 }
                     ).ToListAsync();
 
