@@ -3,7 +3,6 @@
     public class datosRequest
     {
         #region datosCanje
-
         public string? codigoCliente { get; set; }
         public string? indCanjeado { get; set; }
 
@@ -17,6 +16,12 @@
         public string? Id_Raza { get; set; }
         public string? Peso_Perro { get; set; }
 
+        #endregion
+
+        #region datosPremio
+        public string? Titulo { get; set; }
+        public string? Descripcion { get; set; }
+        public string? Src { get; set; }
         #endregion
     }
 }

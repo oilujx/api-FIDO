@@ -19,9 +19,9 @@ namespace apiFIDO.Controllers
             DBContext = dbContext; 
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("validarCodigo")]
-        public async Task<ActionResult<respuestaRequest>> validarCodigo(solicitud datos)
+        public async Task<ActionResult<respuestaRequest>> validarCodigo(datosRequest datos)
         {
             resp = new respuestaRequest();
             ops = new OperacionesBD(this.DBContext);

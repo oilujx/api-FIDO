@@ -9,5 +9,9 @@ public partial class Premio
 
     public string? Descripcion { get; set; }
 
+    public string Titulo { get; set; } = null!;
+
+    public string? Src { get; set; }
+
     public virtual ICollection<CodigoPremio> CodigoPremios { get; set; } = new List<CodigoPremio>();
 }

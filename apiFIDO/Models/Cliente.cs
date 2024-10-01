@@ -19,5 +19,7 @@ public partial class Cliente
 
     public decimal? PesoPerro { get; set; }
 
+    public virtual ICollection<CanjePremio> CanjePremios { get; set; } = new List<CanjePremio>();
+
     public virtual RazaPerro? IdRazaNavigation { get; set; }
 }

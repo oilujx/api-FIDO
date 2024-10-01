@@ -7,104 +7,62 @@ namespace apiFIDO.DLFido
     public class OperacionesBD
     {
         private readonly ApplicationDbContext DBContext;
-        respuestaRequest resp;
+        respuestaRequest? resp;
         public OperacionesBD(ApplicationDbContext dbContext)
         {
             this.DBContext = dbContext;
         }
+        #region registroCodigo        
+        public async Task<respuestaRequest> registrarCliente(datosRequest datos)
+        {
+            resp = new respuestaRequest();
 
-        #region registroCodigo
+            var nuevoCliente = new Cliente()
+            {
+                Nombre = datos.Nombre,
+                Telefono = datos.Telefono,
+                Direccion = datos.Direccion,
+                Correo = datos.Correo,
+                IdRaza = int.Parse(datos.Id_Raza ?? "0"),
+                PesoPerro = decimal.Parse(datos.Peso_Perro ?? "0")
+            };
 
-        //public async Task<respuestaRequest> autoresActivos(int id = 0, string? nombreAutor = null)
-        //{
-        //    resp = new respuestaRequest();
+            try
+            {
+                this.DBContext.Clientes.Add(nuevoCliente);
+                await DBContext.SaveChangesAsync();
 
-        //    try
-        //    {
-        //    //    var query = from au in DBContext.Autors
-        //    //                where au.Estado == 1
-        //    //                && au.Id == (id == 0 ? au.Id : id)
-        //    //                && au.Nombre.Contains((nombreAutor == null ? au.Nombre : nombreAutor))
-        //    //                select au;
+                resp.error = 0;
+                resp.mensaje = "Cliente creado correctamente.";
+            }
+            catch (Exception)
+            {
 
-        //    //    var List = await query.Select(
-        //    //    s => new AutorDTO
-        //    //    {
-        //    //        Id = s.Id,
-        //    //        Nombre = s.Nombre,
-        //    //        Estado = s.Estado,
-        //    //        FecCreacion = s.FecCreacion
-        //    //    }
-        //    //).ToListAsync();
+                resp.error = 1;
+                resp.mensaje = "Error al crear cliente.";
+            }
 
-        //    //    if (List.Count == 0)
-        //    //    {
-        //    //        resp.error = 1;
-        //    //        resp.mensaje = "No se encontro ningun autor.";
-        //    //    }
-        //    //    else
-        //    //    {
-        //    //        resp.error = 0;
-        //    //    }
-
-        //    //    resp.data = List;
-
-        //        return resp;
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
-        //public async Task<respuestaRequest> registrarCliente(Cliente datos)
-        //{
-        //    resp = new respuestaRequest();
-
-
-
-        //    //var nuevoAutor = new Autor()
-        //    //{
-        //    //    Nombre = datos.Nombre
-        //    //};
-
-        //    //try
-        //    //{
-        //    //    this.DBContext.Autors.Add(nuevoAutor);
-        //    //    await DBContext.SaveChangesAsync();
-
-        //    //    resp.error = 0;
-        //    //    resp.mensaje = "Autor creado correctamente.";
-        //    //}
-        //    //catch (Exception)
-        //    //{
-
-        //    //    resp.error = 1;
-        //    //    resp.mensaje = "Error al crear autor.";
-        //    //}
-
-        //    return resp;
-        //}
-
-        public async Task<respuestaRequest> validarCodigo(solicitud datosSolicitud)
+            return resp;
+        }
+        public async Task<respuestaRequest> validarCodigo(datosRequest datosSolicitud)
         {
             resp = new respuestaRequest();
 
             try
             {
-                var query = from vista in DBContext._VW_VALIDA_CODIGO
-                            where vista.CODIGO == datosSolicitud.codigoCliente
+                var query = from vista in DBContext.VwValidaCodigos
+                            where vista.Codigo == datosSolicitud.codigoCliente
                             select new
                             {
-                                vista.CODIGO,
-                                vista.IND_CANJEADO
+                                vista.Codigo,
+                                vista.IndCanjeado
                             };
 
                 var List = await query.Select(
-                s => new solicitud
+                s => new datosRequest
                 {
-                    codigoCliente = s.CODIGO,
-                    indCanjeado = s.IND_CANJEADO                    
+                    codigoCliente = s.Codigo,
+                    indCanjeado = s.IndCanjeado                    
                 }
                     ).ToListAsync();
 
@@ -135,6 +93,45 @@ namespace apiFIDO.DLFido
 
             return resp;
         }
+        public async Task<respuestaRequest> obtenerPremiosXCodigo(datosRequest datosSolicitud)
+        {
+            resp = new respuestaRequest();
+
+            try
+            {
+                var query = from p in DBContext.Premios
+                            join cp in DBContext.CodigoPremios on p.IdPremio equals cp.IdPremio
+                            join c in DBContext.Codigos on cp.IdCodigo equals c.IdCodigo
+                            where c.Codigo1 == datosSolicitud.codigoCliente                            
+                            select new
+                            {
+                                p.Titulo,
+                                p.Descripcion,
+                                p.Src
+                            };
+
+                var List = await query.Select(
+                s => new datosRequest
+                {
+                    Titulo = s.Titulo,
+                    Descripcion = s.Descripcion,
+                    Src = s.Src
+                }
+                    ).ToListAsync();
+
+                resp.error = 0;
+                resp.mensaje = "";
+                resp.data = List;
+            }
+            catch (Exception ex)
+            {
+                resp.mensaje = ex.Message;
+                resp.error = 1;
+            }
+
+            return resp;
+        }
+
         #endregion
 
     }

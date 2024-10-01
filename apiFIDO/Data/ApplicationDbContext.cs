@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using apiFIDO.Models;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
-using apiFIDO.Models;
 
 namespace apiFIDO.Data;
 
@@ -29,11 +29,11 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<RazaPerro> RazaPerros { get; set; }
 
-    public virtual DbSet<VW_VALIDA_CODIGO> _VW_VALIDA_CODIGO { get; set; }
+    public virtual DbSet<VwValidaCodigo> VwValidaCodigos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=prodevsol.c3ue088ogzkd.us-east-1.rds.amazonaws.com;database=FIDOAWS;user=admin;password=prodevsol24!", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.35-mysql"));
+        => optionsBuilder.UseMySql("server=prodevsol.c3ue088ogzkd.us-east-1.rds.amazonaws.com;database=FIDOAWS;user=admin;password=prodevsol24!", ServerVersion.Parse("8.0.35-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,31 +41,29 @@ public partial class ApplicationDbContext : DbContext
             .UseCollation("utf8mb3_general_ci")
             .HasCharSet("utf8mb3");
 
-        modelBuilder.Entity<VW_VALIDA_CODIGO>(eb =>
-         {
-             eb.HasNoKey();
-             eb.ToView("VW_VALIDA_CODIGO");
-         });
-
         modelBuilder.Entity<CanjePremio>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("CANJE_PREMIO");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("CANJE_PREMIO");
 
             entity.HasIndex(e => e.IdCliente, "FK_CLIENTE_idx");
 
             entity.HasIndex(e => e.IdCodigoPremio, "FK_CODIGO_PREMIO_idx");
 
-            entity.Property(e => e.FecCanje).HasColumnName("FEC_CANJE");
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.FecCanje)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("datetime")
+                .HasColumnName("FEC_CANJE");
             entity.Property(e => e.IdCliente).HasColumnName("ID_CLIENTE");
             entity.Property(e => e.IdCodigoPremio).HasColumnName("ID_CODIGO_PREMIO");
 
-            entity.HasOne(d => d.IdClienteNavigation).WithMany()
+            entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.CanjePremios)
                 .HasForeignKey(d => d.IdCliente)
                 .HasConstraintName("FK_CLIENTE");
 
-            entity.HasOne(d => d.IdCodigoPremioNavigation).WithMany()
+            entity.HasOne(d => d.IdCodigoPremioNavigation).WithMany(p => p.CanjePremios)
                 .HasForeignKey(d => d.IdCodigoPremio)
                 .HasConstraintName("FK_CODIGO_PREMIO");
         });
@@ -76,11 +74,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("CLIENTE");
 
-            entity.HasIndex(e => e.Correo, "CORREO_UNIQUE").IsUnique();
-
             entity.HasIndex(e => e.IdRaza, "FK_RAZA_idx");
-
-            entity.HasIndex(e => e.Telefono, "TELEFONO_UNIQUE").IsUnique();
 
             entity.Property(e => e.IdCliente).HasColumnName("ID_CLIENTE");
             entity.Property(e => e.Correo)
@@ -152,6 +146,12 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(500)
                 .HasColumnName("DESCRIPCION");
+            entity.Property(e => e.Src)
+                .HasMaxLength(2500)
+                .HasColumnName("SRC");
+            entity.Property(e => e.Titulo)
+                .HasMaxLength(50)
+                .HasColumnName("TITULO");
         });
 
         modelBuilder.Entity<RazaPerro>(entity =>
@@ -168,6 +168,23 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Nombre)
                 .HasMaxLength(200)
                 .HasColumnName("NOMBRE");
+        });
+
+        modelBuilder.Entity<VwValidaCodigo>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("VW_VALIDA_CODIGO");
+
+            entity.Property(e => e.Codigo)
+                .HasMaxLength(500)
+                .HasColumnName("CODIGO");
+            entity.Property(e => e.IndCanjeado)
+                .HasMaxLength(1)
+                .HasDefaultValueSql("''")
+                .HasColumnName("IND_CANJEADO")
+                .UseCollation("utf8mb4_0900_ai_ci")
+                .HasCharSet("utf8mb4");
         });
 
         OnModelCreatingPartial(modelBuilder);

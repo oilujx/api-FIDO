@@ -11,6 +11,8 @@ public partial class CodigoPremio
 
     public int? IdPremio { get; set; }
 
+    public virtual ICollection<CanjePremio> CanjePremios { get; set; } = new List<CanjePremio>();
+
     public virtual Codigo? IdCodigoNavigation { get; set; }
 
     public virtual Premio? IdPremioNavigation { get; set; }
