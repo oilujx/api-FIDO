@@ -13,9 +13,9 @@ namespace apiFIDO.DLFido
             this.DBContext = dbContext;
         }
         #region registroCodigo        
-        public async Task<respuestaRequest> registrarCliente(datosRequest datos)
+        public int registrarCliente(datosRequest datos)
         {
-            resp = new respuestaRequest();
+           int newIdCliente = 0;
 
             var nuevoCliente = new Cliente()
             {
@@ -30,20 +30,86 @@ namespace apiFIDO.DLFido
             try
             {
                 this.DBContext.Clientes.Add(nuevoCliente);
-                await DBContext.SaveChangesAsync();
+                DBContext.SaveChanges();
 
-                resp.error = 0;
-                resp.mensaje = "Cliente creado correctamente.";
+
+                newIdCliente = nuevoCliente.IdCliente;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return newIdCliente;
+        }
+
+        public bool insertarCanje(datosRequest datos)
+        {
+            bool Inserto = false;
+            
+
+            var nuevoCanje = new CanjePremio()
+            {
+                IdCliente = int.Parse(datos.IdCliente ?? "0"),
+                IdCodigoPremio = int.Parse(datos.IdCodigoPremio ?? "0")
+            };
+
+            try
+            {
+                this.DBContext.CanjePremios.Add(nuevoCanje);
+                DBContext.SaveChanges();
+                Inserto = true;
+
             }
             catch (Exception)
             {
 
-                resp.error = 1;
-                resp.mensaje = "Error al crear cliente.";
+
             }
 
+            return Inserto;
+        }
+
+        public async Task<respuestaRequest> registrarClienteCanje (datosRequest datos)
+        {
+            resp = new respuestaRequest();
+            int idCliente;
+
+          
+              idCliente = registrarCliente(datos);
+              datos.IdCliente = idCliente.ToString();
+                if (idCliente == 0)
+                {
+
+                    resp.error = 1;
+                    resp.mensaje = "Hubo un error al guardar el cliente.";
+
+                } 
+                else 
+                {
+
+
+                    if  (insertarCanje(datos))
+                    {
+                        resp.error = 0;
+                        resp.mensaje = "El canje fue realizado correctamente.";
+                    }
+                    else
+                    {
+
+                        resp.error = 1;
+                        resp.mensaje = "Hubo un error al canjear el codigo.";
+
+
+                    }
+
+                }
+               
+    
             return resp;
         }
+
         public async Task<respuestaRequest> validarCodigo(datosRequest datosSolicitud)
         {
             resp = new respuestaRequest();
@@ -134,6 +200,43 @@ namespace apiFIDO.DLFido
             return resp;
         }
 
+
+        //SELECT RAZAS
+        public async Task<respuestaRequest> obtenerRazaPerro()
+        {
+            resp = new respuestaRequest();
+
+            try
+            {
+                var query = from rp in DBContext.RazaPerros
+                            where rp.Estado == 1
+                            select new
+                            {
+                                rp.Nombre,
+                                rp.IdRaza
+                            };
+
+                var List = await query.Select(
+                s => new RazaPerroDTO
+                {
+                    IdRaza = s.IdRaza,
+                    Nombre = s.Nombre
+                    
+                }
+                    ).ToListAsync();
+
+                resp.error = 0;
+                resp.mensaje = "";
+                resp.data = List;
+            }
+            catch (Exception ex)
+            {
+                resp.mensaje = ex.Message;
+                resp.error = 1;
+            }
+
+            return resp;
+        }
         #endregion
 
     }

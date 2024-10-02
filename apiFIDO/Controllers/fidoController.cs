@@ -42,5 +42,29 @@ namespace apiFIDO.Controllers
 
             return Ok(resp);
         }
+
+        [HttpPost]
+        [Route("ConsultarRaza")]
+        public async Task<ActionResult<respuestaRequest>> ConsultarRaza()
+        {
+            resp = new respuestaRequest();
+            ops = new OperacionesBD(this.DBContext);
+
+            resp = await ops.obtenerRazaPerro();
+
+            return Ok(resp);
+        }
+
+        [HttpPost]
+        [Route("CanjearPremio")]
+        public async Task<ActionResult<respuestaRequest>> CanjearPremio(datosRequest datos)
+        {
+            resp = new respuestaRequest();
+            ops = new OperacionesBD(this.DBContext);
+
+            resp = await ops.registrarClienteCanje(datos);
+
+            return Ok(resp);
+        }
     }
 }

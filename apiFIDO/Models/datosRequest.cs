@@ -5,6 +5,9 @@
         #region datosCanje
         public string? codigoCliente { get; set; }
         public string? indCanjeado { get; set; }
+        public string? IdCodigoPremio { get; set; }
+        public string? IdCliente { get; set; }
+
 
         #endregion
 
