@@ -43,9 +43,9 @@ namespace apiFIDO.Controllers
             return Ok(resp);
         }
 
-        [HttpPost]
-        [Route("ConsultarRaza")]
-        public async Task<ActionResult<respuestaRequest>> ConsultarRaza()
+        [HttpGet]
+        [Route("obtenerRazas")]
+        public async Task<ActionResult<respuestaRequest>> obtenerRazas()
         {
             resp = new respuestaRequest();
             ops = new OperacionesBD(this.DBContext);
